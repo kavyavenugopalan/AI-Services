@@ -1,0 +1,11 @@
+langchain 
+openai
+PyPDF2
+faiss-cpu
+tiktoken
+langchain-community
+langchain-openai
+transformers
+torch
+scikit-learn
+flask
