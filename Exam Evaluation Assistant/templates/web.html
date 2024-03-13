@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Upload</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #001f3f; /* Navy blue background */
+            color: #fff; /* Text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #337ab7; /* Bootstrap primary color */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 20px;
+        }
+      
+
+
+        h2 {
+            color: #fff; /* Heading color */
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #fff; /* Label color */
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"], input[type="button"] {
+            background-color: #5cb85c; /* Bootstrap success color */
+            color: #fff; /* Button text color */
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #4cae4c; /* Lighter shade on hover */
+        }
+
+        .success-message {
+            color: #5cb85c; /* Bootstrap success color */
+            margin-top: 10px;
+        }
+        /* Loading overlay styles */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .loading-message {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <form action="/upload" method="post" enctype="multipart/form-data"> 
+        <div>
+            <h2>Upload your reference document</h2>
+            <label for="pdfFile">Select a PDF file:</label>
+            <input type="file" id="pdfFile" name="pdfFile" accept=".pdf">
+            <br>
+            <input type="submit" value="Upload & Process" onclick="processFiles()">
+
+            <!-- Loading overlay -->
+ 
+        </div>
+        <div class="loading-overlay" id="loadingOverlay1">
+            <div class="loading-message">Processing...</div>
+        </div> 
+        <hr>
+        <script>
+                        function processFiles() {
+                var pdfFile = document.getElementById("pdfFile").value;
+       
+                // Show loading overlay only if at least one file is uploaded
+                if (pdfFile){ //|| questionSetFile || answerSheetFile) {
+                    document.getElementById("loadingOverlay1").style.display = "flex";
+                    setTimeout(function(){
+                        document.getElementById("loadingOverlay1").style.display = "none";
+                        // Simulate the evaluation process (replace with your actual evaluation code)
+                        
+                    }, 2000); // Simulated 2-second delay
+                } else {
+                    alert('Please upload file before processing');
+                }
+            }
+        </script>
+    </form>
+
+    <form action="/uploadquest" method="post" enctype="multipart/form-data"> 
+        <div>
+            <h2>Upload your question set</h2>
+            <label for="questionSetFile">Select a txt file:</label>
+            <input type="file" id="questionSetFile" name="questionSetFile" accept=".txt">
+            <br>
+            <input type="submit" value="Upload & Produce AI generated answer-key" onclick="generateFiles()">
+           
+        </div>
+        <div class="loading-overlay" id="loadingOverlay2">
+            <div class="loading-message">Generating Answers...</div>
+        </div> 
+        <hr>
+        <script>
+            function generateFiles() {
+                var questionSetFile = document.getElementById("questionSetFile").value;
+                
+
+                // Show loading overlay only if at least one file is uploaded
+                if (questionSetFile){ //|| questionSetFile || answerSheetFile) {
+                    document.getElementById("loadingOverlay2").style.display = "flex";
+                    setTimeout(function(){
+                        document.getElementById("loadingOverlay2").style.display = "none";
+                        // Simulate the evaluation process (replace with your actual evaluation code)
+                       
+                    }, 2000); // Simulated 2-second delay
+                } else {
+                    alert('Please upload file before processing');
+                }
+            }
+        </script>
+    </form>
+    <form action="/evaluate" method="post" enctype="multipart/form-data"> 
+        <div>
+            <h2>Upload your answer sheet</h2>
+            <label for="answerSheetFile">Select a txt file:</label>
+            <input type="file" id="answerSheetFile" name="answerSheetFile" accept=".txt">
+            <br>
+            <input type="submit" value="Upload & Evaluate" onclick="evaluateFiles()">
+            
+        </div>
+
+
+        <br>
+
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage" style="display: none;">Document uploaded successfully!!</div>
+
+
+
+        <!-- Loading overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-message">Evaluating...</div>
+        </div>
+
+        <script>
+
+
+            function evaluateFiles() {
+
+                var answerSheetFile = document.getElementById("answerSheetFile").value;
+
+                // Show loading overlay only if at least one file is uploaded
+                if (answerSheetFile) {
+                    
+                    document.getElementById("loadingOverlay").style.display = "flex";
+
+                } else {
+                    alert('Please upload at least one file before evaluating');
+                 }
+            }
+            
+        </script>
+    </form>
+
+</body>
+</html>
