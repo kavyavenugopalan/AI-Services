@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #008080; /* Teal color */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #008080; /* Teal color */
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #e0f7fa; /* Light Blue hover color */
+        }
+        a {
+            position: absolute;
+            bottom: 20px; /* Adjust the distance from the bottom as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green color */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker shade on hover */
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <h1>Result Page</h1>
+    <h2>Result:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for question, percentage in result.items() %}
+                <tr>
+                    <td>{{ question }}</td>
+                    <td>{{ percentage }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="http://127.0.0.1:5000">
+    <button>Go Back</button> 
+</a>
+</body>
+</html>
